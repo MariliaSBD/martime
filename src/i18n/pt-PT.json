@@ -408,7 +408,11 @@
   "time": {
     "noRecord": "Sem registo",
     "removed": "{{name}} foi removida",
-    "shortened": "{{name}} foi encurtada"
+    "shortened": "{{name}} foi encurtada",
+    "edit": "Editar registo",
+    "endDate": "Data de fim",
+    "fill": "Preencher",
+    "startDate": "Data de início"
   },
   "today": {
     "activity": "Atividade",
@@ -472,7 +476,21 @@
   },
   "cal": {
     "next": "Seguinte",
-    "prev": "Anterior"
+    "prev": "Anterior",
+    "day": "Dia",
+    "deadline": "prazo",
+    "future": "dia futuro",
+    "items_one": "{{count}} item",
+    "items_other": "{{count}} itens",
+    "legend": "Legenda",
+    "month": "Mês",
+    "noItems": "Sem itens",
+    "plan": "Plano",
+    "real": "Real",
+    "view": "Vista",
+    "week": "Semana",
+    "year": "Ano",
+    "hours": "Horas do dia"
   },
   "matrix": {
     "count_one": "{{count}} tarefa",
@@ -592,5 +610,20 @@
       "cancelled_me": "cancelado por ti",
       "missed": "como falta"
     }
+  },
+  "idates": {
+    "dayBefore": "Na véspera",
+    "daysBefore": "{{n}} dias antes",
+    "sameDay": "No próprio dia",
+    "daysBeforeLabel": "Dias antes",
+    "namePh": "Ex.: Aniversário da mãe",
+    "next": "Próxima: {{d}}",
+    "reminderDays": "Dias antes do lembrete",
+    "reminders": "Lembretes",
+    "todo": "O que fazer",
+    "todoDays": "Dias antes para {{name}}",
+    "todoPh": "Ex.: Comprar presente",
+    "todos": "O que fazer",
+    "yearly": "Repete todos os anos"
   }
 }

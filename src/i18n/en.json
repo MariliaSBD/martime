@@ -408,7 +408,11 @@
   "time": {
     "noRecord": "Not logged",
     "removed": "{{name}} was removed",
-    "shortened": "{{name}} was shortened"
+    "shortened": "{{name}} was shortened",
+    "edit": "Edit entry",
+    "endDate": "End date",
+    "fill": "Fill in",
+    "startDate": "Start date"
   },
   "today": {
     "activity": "Activity",
@@ -472,7 +476,21 @@
   },
   "cal": {
     "next": "Next",
-    "prev": "Previous"
+    "prev": "Previous",
+    "day": "Day",
+    "deadline": "deadline",
+    "future": "future day",
+    "items_one": "{{count}} item",
+    "items_other": "{{count}} items",
+    "legend": "Legend",
+    "month": "Month",
+    "noItems": "No items",
+    "plan": "Plan",
+    "real": "Actual",
+    "view": "View",
+    "week": "Week",
+    "year": "Year",
+    "hours": "Hours of the day"
   },
   "matrix": {
     "count_one": "{{count}} task",
@@ -592,5 +610,20 @@
       "cancelled_me": "cancelled by you",
       "missed": "missed"
     }
+  },
+  "idates": {
+    "dayBefore": "The day before",
+    "daysBefore": "{{n}} days before",
+    "sameDay": "On the day",
+    "daysBeforeLabel": "Days before",
+    "namePh": "E.g. Mum's birthday",
+    "next": "Next: {{d}}",
+    "reminderDays": "Reminder days before",
+    "reminders": "Reminders",
+    "todo": "To do",
+    "todoDays": "Days before for {{name}}",
+    "todoPh": "E.g. Buy a present",
+    "todos": "To do",
+    "yearly": "Repeats every year"
   }
 }

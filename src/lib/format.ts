@@ -35,7 +35,10 @@ export function fmtMonth(year: number, month: number, style: 'long' | 'short' = 
 
 export function weekdayName(iso: number, style: 'long' | 'short' | 'narrow' = 'long'): string {
   // 2024-01-01 was a Monday
-  return new Intl.DateTimeFormat(lang(), { weekday: style, timeZone: 'UTC' }).format(new Date(Date.UTC(2024, 0, iso)));
+  const long = new Intl.DateTimeFormat(lang(), { weekday: 'long', timeZone: 'UTC' }).format(new Date(Date.UTC(2024, 0, iso)));
+  if (style === 'short') return long.slice(0, 3); // "seg", "ter" / "Mon", "Tue"
+  if (style === 'narrow') return long.slice(0, 1).toUpperCase();
+  return long;
 }
 
 /** 75 → "1 h 15 min"; 45 → "45 min" */

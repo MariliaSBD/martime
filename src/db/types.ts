@@ -85,6 +85,8 @@ export interface Task extends Base {
   /** generated from an important date's to-do list */
   importantDateId: string | null;
   todoId: string | null;
+  /** occurrence of the important date this task belongs to */
+  importantOccurrence?: DateKey | null;
   /** set when Reorganizar removed the task from that day's plan */
   reorganizedOn: DateKey | null;
 }
