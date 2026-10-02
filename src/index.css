@@ -1,0 +1,91 @@
+@import 'tailwindcss';
+@import '@fontsource/plus-jakarta-sans/400.css';
+@import '@fontsource/plus-jakarta-sans/500.css';
+@import '@fontsource/plus-jakarta-sans/600.css';
+@import '@fontsource/plus-jakarta-sans/700.css';
+
+@theme inline {
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --color-bg: var(--bg);
+  --color-primary: var(--primary);
+  --color-primary-soft: var(--primary-soft);
+  --color-primary-dark: var(--primary-dark);
+  --color-on-primary: var(--on-primary);
+  --color-ink: #1f2333;
+  --color-muted: #6b7280;
+  --color-muted-bg: var(--text-secondary-bg);
+  --color-line: #e7e9f2;
+  --color-card: #ffffff;
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-success-dark: var(--success-dark);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-warning-dark: var(--warning-dark);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-danger-dark: var(--danger-dark);
+  --radius-card: 12px;
+  --radius-ctl: 8px;
+  --shadow-soft: 0 1px 2px rgb(31 35 51 / 0.04), 0 4px 16px rgb(31 35 51 / 0.05);
+}
+
+:root {
+  /* palette A defaults, replaced at runtime */
+  --bg: #fffdf7;
+  --primary: #3d5afe;
+  --primary-soft: #d8defe;
+  --primary-dark: #2a3fb2;
+  --on-primary: #ffffff;
+  --text-secondary-bg: #6b7280;
+  --success: #2f9e44;
+  --warning: #e8590c;
+  --danger: #e03131;
+  color-scheme: light;
+}
+
+html,
+body {
+  background: var(--bg);
+  color: #1f2333;
+  font-family: var(--font-sans);
+  font-size: 16px;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  min-height: 100dvh;
+  overscroll-behavior-y: none;
+}
+
+:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+input,
+select,
+textarea,
+button {
+  font: inherit;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.pt-safe {
+  padding-top: env(safe-area-inset-top);
+}

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="MarTime">
+  <rect width="512" height="512" rx="112" fill="#FFFDF7"/>
+  <!-- clock -->
+  <circle cx="300" cy="236" r="150" fill="#D8DEFE"/>
+  <circle cx="300" cy="236" r="150" fill="none" stroke="#3D5AFE" stroke-width="22"/>
+  <g stroke="#3D5AFE" stroke-width="14" stroke-linecap="round">
+    <line x1="300" y1="106" x2="300" y2="128"/>
+    <line x1="430" y1="236" x2="408" y2="236"/>
+    <line x1="300" y1="366" x2="300" y2="344"/>
+  </g>
+  <g stroke="#3D5AFE" stroke-width="18" stroke-linecap="round">
+    <line x1="300" y1="236" x2="300" y2="160"/>
+    <line x1="300" y1="236" x2="356" y2="270"/>
+  </g>
+  <circle cx="300" cy="236" r="14" fill="#3D5AFE"/>
+  <!-- running person in front of the clock -->
+  <!-- light halo so the runner stands out from the clock -->
+  <circle cx="186" cy="184" r="50" fill="#FFFDF7"/>
+  <g stroke="#FFFDF7" stroke-width="66" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <path d="M176 236 L150 320"/>
+    <path d="M178 244 L236 278 L268 252"/>
+    <path d="M168 244 L120 262 L98 236"/>
+    <path d="M150 320 L206 356 L194 420"/>
+    <path d="M150 320 L118 380 L64 384"/>
+  </g>
+  <g fill="#3D5AFE">
+    <circle cx="186" cy="184" r="32"/>
+  </g>
+  <g stroke="#3D5AFE" stroke-width="34" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <path d="M176 236 L150 320"/>
+    <path d="M178 244 L236 278 L268 252"/>
+    <path d="M168 244 L120 262 L98 236"/>
+    <path d="M150 320 L206 356 L194 420"/>
+    <path d="M150 320 L118 380 L64 384"/>
+  </g>
+</svg>

@@ -1,0 +1,153 @@
+// Date helpers. Instants are stored in UTC (ISO strings); day limits are computed in Europe/Lisbon.
+// Dependency-free on purpose: this file is also copied into the Edge Functions (Deno).
+
+export const TZ = 'Europe/Lisbon';
+
+export type DateKey = string; // YYYY-MM-DD in Europe/Lisbon
+
+const partsFmt = new Intl.DateTimeFormat('en-GB', {
+  timeZone: TZ,
+  year: 'numeric',
+  month: '2-digit',
+  day: '2-digit',
+  hour: '2-digit',
+  minute: '2-digit',
+  second: '2-digit',
+  hourCycle: 'h23',
+});
+
+export function toDate(v: Date | string | number): Date {
+  return v instanceof Date ? v : new Date(v);
+}
+
+interface LocalParts {
+  year: number;
+  month: number;
+  day: number;
+  hour: number;
+  minute: number;
+  second: number;
+}
+
+export function localParts(v: Date | string | number): LocalParts {
+  const p: Record<string, string> = {};
+  for (const part of partsFmt.formatToParts(toDate(v))) p[part.type] = part.value;
+  return {
+    year: Number(p.year),
+    month: Number(p.month),
+    day: Number(p.day),
+    hour: Number(p.hour),
+    minute: Number(p.minute),
+    second: Number(p.second),
+  };
+}
+
+const pad = (n: number) => String(n).padStart(2, '0');
+
+export function dateKey(v: Date | string | number): DateKey {
+  const p = localParts(v);
+  return `${p.year}-${pad(p.month)}-${pad(p.day)}`;
+}
+
+export function localHHMM(v: Date | string | number): string {
+  const p = localParts(v);
+  return `${pad(p.hour)}:${pad(p.minute)}`;
+}
+
+/** Minutes since local midnight for an instant. */
+export function localMinutes(v: Date | string | number): number {
+  const p = localParts(v);
+  return p.hour * 60 + p.minute;
+}
+
+function offsetMinutes(at: number): number {
+  const p = localParts(at);
+  const asUtc = Date.UTC(p.year, p.month - 1, p.day, p.hour, p.minute, p.second);
+  return Math.round((asUtc - Math.floor(at / 1000) * 1000) / 60000);
+}
+
+/** The UTC instant of a Lisbon wall-clock time. Non-existent times (spring forward) move forward. */
+export function atLocal(key: DateKey, hhmm = '00:00'): Date {
+  const [y, m, d] = key.split('-').map(Number);
+  const [hh, mm] = hhmm.split(':').map(Number);
+  const guess = Date.UTC(y, m - 1, d, hh, mm);
+  let t = guess - offsetMinutes(guess) * 60000;
+  t = guess - offsetMinutes(t) * 60000;
+  return new Date(t);
+}
+
+export function dayStart(key: DateKey): Date {
+  return atLocal(key, '00:00');
+}
+
+export function dayEnd(key: DateKey): Date {
+  return atLocal(addDays(key, 1), '00:00');
+}
+
+export function addDays(key: DateKey, n: number): DateKey {
+  const [y, m, d] = key.split('-').map(Number);
+  const t = new Date(Date.UTC(y, m - 1, d + n));
+  return `${t.getUTCFullYear()}-${pad(t.getUTCMonth() + 1)}-${pad(t.getUTCDate())}`;
+}
+
+export function addMonths(key: DateKey, n: number): DateKey {
+  const [y, m, d] = key.split('-').map(Number);
+  const total = y * 12 + (m - 1) + n;
+  const ny = Math.floor(total / 12);
+  const nm = (total % 12) + 1;
+  return `${ny}-${pad(nm)}-${pad(Math.min(d, daysInMonth(ny, nm)))}`;
+}
+
+export function daysInMonth(year: number, month: number): number {
+  return new Date(Date.UTC(year, month, 0)).getUTCDate();
+}
+
+/** 1 = Monday … 7 = Sunday */
+export function isoWeekday(key: DateKey): number {
+  const [y, m, d] = key.split('-').map(Number);
+  const wd = new Date(Date.UTC(y, m - 1, d)).getUTCDay();
+  return wd === 0 ? 7 : wd;
+}
+
+export function weekStart(key: DateKey): DateKey {
+  return addDays(key, 1 - isoWeekday(key));
+}
+
+export function monthStart(key: DateKey): DateKey {
+  return key.slice(0, 8) + '01';
+}
+
+export function diffDays(a: DateKey, b: DateKey): number {
+  const [y1, m1, d1] = a.split('-').map(Number);
+  const [y2, m2, d2] = b.split('-').map(Number);
+  return Math.round((Date.UTC(y2, m2 - 1, d2) - Date.UTC(y1, m1 - 1, d1)) / 86400000);
+}
+
+export function rangeKeys(from: DateKey, to: DateKey): DateKey[] {
+  const out: DateKey[] = [];
+  for (let k = from; k <= to; k = addDays(k, 1)) out.push(k);
+  return out;
+}
+
+export function minutesBetween(a: Date | string | number, b: Date | string | number): number {
+  return (toDate(b).getTime() - toDate(a).getTime()) / 60000;
+}
+
+export function hhmmToMinutes(hhmm: string): number {
+  const [h, m] = hhmm.split(':').map(Number);
+  return h * 60 + m;
+}
+
+export function minutesToHHMM(min: number): string {
+  const m = ((Math.round(min) % 1440) + 1440) % 1440;
+  return `${pad(Math.floor(m / 60))}:${pad(m % 60)}`;
+}
+
+export function nowIso(): string {
+  return new Date().toISOString();
+}
+
+/** Round minutes to the nearest multiple of `step` (minimum one step). */
+export function roundTo(min: number, step: number): number {
+  return Math.max(step, Math.round(min / step) * step);
+}
