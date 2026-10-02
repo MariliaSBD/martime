@@ -311,7 +311,40 @@
     "eventCreated": "Compromisso criado"
   },
   "reorg": {
-    "title": "Reorganizar o dia"
+    "title": "Reorganizar o dia",
+    "addItem": "Adicionar item",
+    "applied": "Dia reorganizado",
+    "available": "Tempo disponível (min)",
+    "counter": "{{used}} de {{avail}}",
+    "criteria": "Critérios que usei",
+    "criteriaPh": "Ex.: Primeiro o que tem prazo hoje",
+    "decisionFor": "Decisão para {{name}}",
+    "feedback": "Feedback do grupo",
+    "itemPh": "Ex.: Ligar ao cliente",
+    "itemsCount_one": "{{count}} item",
+    "itemsCount_other": "{{count}} itens",
+    "minutes": "Minutos",
+    "newSim": "Nova simulação",
+    "simSaved": "Simulação guardada",
+    "simulation": "Simulação",
+    "simulations": "Simulações",
+    "to": "Para",
+    "type": "Tipo",
+    "d": {
+      "do": "Fazer",
+      "postpone": "Adiar",
+      "delegate": "Delegar",
+      "refuse": "Recusar"
+    },
+    "types": {
+      "call": "Chamada",
+      "colleague": "Pedido de colega",
+      "deadline": "Prazo",
+      "email": "Email",
+      "other": "Outro",
+      "task": "Tarefa",
+      "event": "Compromisso"
+    }
   },
   "repeat": {
     "until": "Até (opcional)",
@@ -436,5 +469,128 @@
     "afternoon": "Tarde",
     "evening": "Noite",
     "noTime": "Sem hora"
+  },
+  "cal": {
+    "next": "Seguinte",
+    "prev": "Anterior"
+  },
+  "matrix": {
+    "count_one": "{{count}} tarefa",
+    "count_other": "{{count}} tarefas",
+    "total_one": "{{count}} tarefa",
+    "total_other": "{{count}} tarefas",
+    "markHard": "Marcar como difícil de classificar",
+    "moveTo": "Mover para {{q}}",
+    "notUrgent": "Não urgente",
+    "unclassified": "Por classificar",
+    "do": "Fazer já",
+    "doSub": "Urgente e importante",
+    "schedule": "Agendar",
+    "scheduleSub": "Importante, não urgente",
+    "delegate": "Delegar",
+    "delegateSub": "Urgente, não importante",
+    "eliminate": "Eliminar",
+    "eliminateSub": "Nem urgente nem importante"
+  },
+  "projects": {
+    "accessory": "Acessória",
+    "add": "Criar projeto",
+    "addStep": "Etapa",
+    "critical": "Crítica",
+    "criticalLate": "Há uma etapa crítica atrasada",
+    "deleteTitle": "Apagar projeto com etapas",
+    "deleteWithSteps": "Apagar também as etapas",
+    "keepSteps": "Manter as etapas como tarefas soltas",
+    "diary": "Diário do projeto",
+    "diaryPh": "Ex.: Terminei o esboço",
+    "empty": "Ainda sem projetos",
+    "end": "Data de fim",
+    "start": "Data de início",
+    "namePh": "Ex.: Mudar de casa",
+    "objective": "Objetivo do projeto",
+    "objectivePh": "Ex.: Casa nova pronta a 30 de novembro",
+    "obstacle": "Obstáculo",
+    "obstaclePh": "Ex.: Atraso da mudança",
+    "obstacles": "Obstáculos",
+    "plan": "O que faço se acontecer",
+    "planPh": "Ex.: Pedir ajuda à família",
+    "progress": "{{done}} de {{total}} etapas",
+    "resource": "Recurso",
+    "resourcePh": "Ex.: Caixas",
+    "resources": "Recursos",
+    "steps": "Etapas",
+    "timeline": "Linha temporal",
+    "status": {
+      "active": "Em curso",
+      "done": "Concluído",
+      "paused": "Em pausa",
+      "cancelled": "Cancelado"
+    }
+  },
+  "review": {
+    "allDone": "Não há tarefas por concluir.",
+    "endAt": "O dia termina às {{t}}.",
+    "noActiveDay": "Não há nenhum dia começado.",
+    "s1": "Progresso do dia",
+    "s2": "Tarefas por concluir",
+    "s3": "Como te sentiste hoje?",
+    "s4": "A dica do dia",
+    "s5": "Planear amanhã",
+    "s6": "Terminar o dia",
+    "whatTo": "O que fazer com {{name}}"
+  },
+  "stats": {
+    "planned": "Previsto",
+    "real": "Real"
+  },
+  "tasks": {
+    "allAreas": "Todas as áreas",
+    "empty": "Ainda sem tarefas",
+    "filter": "Filtro",
+    "list": "Lista",
+    "matrix": "Matriz",
+    "projects": "Projetos",
+    "search": "Pesquisar",
+    "searchPh": "Ex.: relatório",
+    "view": "Vista",
+    "filters": {
+      "today": "Hoje",
+      "week": "Esta semana",
+      "someday": "Algum dia",
+      "late": "Atrasadas",
+      "delegated": "Delegadas",
+      "done": "Concluídas"
+    }
+  },
+  "tip": {
+    "good": "Correu bem",
+    "watch": "A observar",
+    "tomorrow": "Para amanhã",
+    "intro": "Hoje ficou abaixo do previsto. Acontece.",
+    "B1": "Cumpriste {{p}}% do plano.",
+    "B2": "Começaste tudo a horas.",
+    "B3": "As tuas estimativas acertaram: diferença de {{d}}%.",
+    "B4": "Fizeste as tarefas exigentes no teu período de mais energia.",
+    "B5": "Cumpriste {{p}}% do plano.",
+    "B6": "Registaste o teu dia. É isso que permite aprender com ele.",
+    "O1": "{{event}} ficou {{status}}.",
+    "O2": "{{task}} levou {{real}} em vez de {{planned}}.",
+    "O2more": "É a {{n}}.ª vez esta semana que tarefas de {{area}} passam do previsto.",
+    "O3": "Começaste, em média, {{min}} minutos depois do previsto.",
+    "O4": "Houve {{time}} de desperdício, sobretudo em {{activity}}.",
+    "O5": "{{task}} é exigente e ficou num bloco de energia baixa.",
+    "O6": "Ficaram {{time}} sem registo.",
+    "T_O1": "Antes de aceitares um compromisso novo, confirma que cabe no teu dia.",
+    "T_O2": "Prevê {{suggestion}} para tarefas como {{task}}.",
+    "T_O3": "Se a primeira tarefa do dia tiver hora marcada, prepara na véspera o que precisas para ela.",
+    "T_O4": "Quando deres por ti em {{activity}}, troca por uma pausa curta e uma tarefa rápida da lista.",
+    "T_O5": "Põe as tarefas exigentes no bloco {{block}}.",
+    "T_O6": "Quando mudares de atividade, toca em «O que estou a fazer?».",
+    "T_none": "Escolhe uma tarefa que, se ficar feita, faz o dia valer a pena.",
+    "status": {
+      "postponed": "adiado",
+      "cancelled_me": "cancelado por ti",
+      "missed": "como falta"
+    }
   }
 }

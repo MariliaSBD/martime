@@ -311,7 +311,40 @@
     "eventCreated": "Event created"
   },
   "reorg": {
-    "title": "Reorganise the day"
+    "title": "Reorganise the day",
+    "addItem": "Add item",
+    "applied": "Day reorganised",
+    "available": "Time available (min)",
+    "counter": "{{used}} of {{avail}}",
+    "criteria": "Criteria I used",
+    "criteriaPh": "E.g. First what is due today",
+    "decisionFor": "Decision for {{name}}",
+    "feedback": "Group feedback",
+    "itemPh": "E.g. Call the client",
+    "itemsCount_one": "{{count}} item",
+    "itemsCount_other": "{{count}} items",
+    "minutes": "Minutes",
+    "newSim": "New simulation",
+    "simSaved": "Simulation saved",
+    "simulation": "Simulation",
+    "simulations": "Simulations",
+    "to": "To",
+    "type": "Type",
+    "d": {
+      "do": "Do",
+      "postpone": "Postpone",
+      "delegate": "Delegate",
+      "refuse": "Decline"
+    },
+    "types": {
+      "call": "Call",
+      "colleague": "Colleague request",
+      "deadline": "Deadline",
+      "email": "Email",
+      "other": "Other",
+      "task": "Task",
+      "event": "Event"
+    }
   },
   "repeat": {
     "until": "Until (optional)",
@@ -436,5 +469,128 @@
     "afternoon": "Afternoon",
     "evening": "Evening",
     "noTime": "No time"
+  },
+  "cal": {
+    "next": "Next",
+    "prev": "Previous"
+  },
+  "matrix": {
+    "count_one": "{{count}} task",
+    "count_other": "{{count}} tasks",
+    "total_one": "{{count}} task",
+    "total_other": "{{count}} tasks",
+    "markHard": "Mark as hard to classify",
+    "moveTo": "Move to {{q}}",
+    "notUrgent": "Not urgent",
+    "unclassified": "To classify",
+    "do": "Do now",
+    "doSub": "Urgent and important",
+    "schedule": "Schedule",
+    "scheduleSub": "Important, not urgent",
+    "delegate": "Delegate",
+    "delegateSub": "Urgent, not important",
+    "eliminate": "Eliminate",
+    "eliminateSub": "Neither urgent nor important"
+  },
+  "projects": {
+    "accessory": "Optional",
+    "add": "Create project",
+    "addStep": "Step",
+    "critical": "Critical",
+    "criticalLate": "A critical step is late",
+    "deleteTitle": "Delete project with steps",
+    "deleteWithSteps": "Also delete the steps",
+    "keepSteps": "Keep the steps as standalone tasks",
+    "diary": "Project diary",
+    "diaryPh": "E.g. Finished the draft",
+    "empty": "No projects yet",
+    "end": "End date",
+    "start": "Start date",
+    "namePh": "E.g. Move house",
+    "objective": "Project goal",
+    "objectivePh": "E.g. New home ready by 30 November",
+    "obstacle": "Obstacle",
+    "obstaclePh": "E.g. Moving company late",
+    "obstacles": "Obstacles",
+    "plan": "What I do if it happens",
+    "planPh": "E.g. Ask family for help",
+    "progress": "{{done}} of {{total}} steps",
+    "resource": "Resource",
+    "resourcePh": "E.g. Boxes",
+    "resources": "Resources",
+    "steps": "Steps",
+    "timeline": "Timeline",
+    "status": {
+      "active": "Active",
+      "done": "Done",
+      "paused": "Paused",
+      "cancelled": "Cancelled"
+    }
+  },
+  "review": {
+    "allDone": "No tasks left to do.",
+    "endAt": "The day ends at {{t}}.",
+    "noActiveDay": "No day has been started.",
+    "s1": "Day progress",
+    "s2": "Tasks left",
+    "s3": "How did you feel today?",
+    "s4": "Tip of the day",
+    "s5": "Plan tomorrow",
+    "s6": "End the day",
+    "whatTo": "What to do with {{name}}"
+  },
+  "stats": {
+    "planned": "Planned",
+    "real": "Actual"
+  },
+  "tasks": {
+    "allAreas": "All areas",
+    "empty": "No tasks yet",
+    "filter": "Filter",
+    "list": "List",
+    "matrix": "Matrix",
+    "projects": "Projects",
+    "search": "Search",
+    "searchPh": "E.g. report",
+    "view": "View",
+    "filters": {
+      "today": "Today",
+      "week": "This week",
+      "someday": "Someday",
+      "late": "Overdue",
+      "delegated": "Delegated",
+      "done": "Done"
+    }
+  },
+  "tip": {
+    "good": "Went well",
+    "watch": "To watch",
+    "tomorrow": "For tomorrow",
+    "intro": "Today fell short of the plan. It happens.",
+    "B1": "You completed {{p}}% of the plan.",
+    "B2": "You started everything on time.",
+    "B3": "Your estimates were right: {{d}}% off.",
+    "B4": "You did the demanding tasks in your highest-energy period.",
+    "B5": "You completed {{p}}% of the plan.",
+    "B6": "You logged your day. That is what lets you learn from it.",
+    "O1": "{{event}} was {{status}}.",
+    "O2": "{{task}} took {{real}} instead of {{planned}}.",
+    "O2more": "This is time number {{n}} this week that {{area}} tasks ran over.",
+    "O3": "On average you started {{min}} minutes later than planned.",
+    "O4": "There was {{time}} of waste, mostly on {{activity}}.",
+    "O5": "{{task}} is demanding and landed in a low-energy block.",
+    "O6": "{{time}} went unlogged.",
+    "T_O1": "Before accepting a new event, check that it fits your day.",
+    "T_O2": "Plan {{suggestion}} for tasks like {{task}}.",
+    "T_O3": "If the first task of the day has a set time, prepare what you need the evening before.",
+    "T_O4": "When you catch yourself on {{activity}}, swap it for a short break and a quick task from the list.",
+    "T_O5": "Put demanding tasks in the {{block}} block.",
+    "T_O6": "When you switch activities, tap “What am I doing?”.",
+    "T_none": "Choose one task that, once done, makes the day worth it.",
+    "status": {
+      "postponed": "postponed",
+      "cancelled_me": "cancelled by you",
+      "missed": "missed"
+    }
   }
 }

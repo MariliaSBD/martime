@@ -9,8 +9,15 @@ export function fmtLongDate(key: DateKey): string {
   return s.charAt(0).toUpperCase() + s.slice(1);
 }
 
-export function fmtDate(key: DateKey, opts: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'short' }): string {
-  return new Intl.DateTimeFormat(lang(), { ...opts, timeZone: TZ }).format(atLocal(key, '12:00'));
+/** Short form "2 out." / "2 Oct" unless other options are given. */
+export function fmtDate(key: DateKey, opts?: Intl.DateTimeFormatOptions): string {
+  const d = atLocal(key, '12:00');
+  if (!opts) {
+    const day = Number(key.slice(8, 10));
+    const month = new Intl.DateTimeFormat(lang(), { month: 'short', timeZone: TZ }).format(d);
+    return `${day} ${month}`;
+  }
+  return new Intl.DateTimeFormat(lang(), { ...opts, timeZone: TZ }).format(d);
 }
 
 export function fmtTime(at: string | Date): string {

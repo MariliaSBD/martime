@@ -90,5 +90,5 @@ export async function startDay(page: Page) {
 }
 
 export function card(page: Page, title: string) {
-  return page.locator('main li').filter({ hasText: title }).first();
+  return page.locator('main li').filter({ has: page.getByText(title, { exact: true }) }).last();
 }
