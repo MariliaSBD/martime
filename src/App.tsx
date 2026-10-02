@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react';
+import { Suspense } from 'react';
 import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { useApp } from '@/state/app';
 import { Layout } from '@/components/Layout';
@@ -10,24 +10,24 @@ import { registerAllForms } from '@/forms';
 
 registerAllForms();
 
-const Today = lazy(() => import('@/screens/Today'));
-const CalendarScreen = lazy(() => import('@/screens/Calendar'));
-const Tasks = lazy(() => import('@/screens/Tasks'));
-const Goals = lazy(() => import('@/screens/Goals'));
-const Review = lazy(() => import('@/screens/Review'));
-const SettingsScreen = lazy(() => import('@/screens/Settings'));
-const Onboarding = lazy(() => import('@/screens/Onboarding'));
-const TaskDetail = lazy(() => import('@/screens/TaskDetail'));
-const ProjectDetail = lazy(() => import('@/screens/ProjectDetail'));
-const GoalDetail = lazy(() => import('@/screens/GoalDetail'));
-const DecisionDetail = lazy(() => import('@/screens/DecisionDetail'));
-const ReflectionDetail = lazy(() => import('@/screens/ReflectionDetail'));
-const ImportantDateDetail = lazy(() => import('@/screens/ImportantDateDetail'));
-const WeekReview = lazy(() => import('@/screens/WeekReview'));
-const DayReview = lazy(() => import('@/screens/DayReview'));
-const Reorganize = lazy(() => import('@/screens/Reorganize'));
-const SessionDetail = lazy(() => import('@/screens/SessionDetail'));
-const TrainingReport = lazy(() => import('@/screens/TrainingReport'));
+import Today from '@/screens/Today';
+import CalendarScreen from '@/screens/Calendar';
+import Tasks from '@/screens/Tasks';
+import Goals from '@/screens/Goals';
+import Review from '@/screens/Review';
+import SettingsScreen from '@/screens/Settings';
+import Onboarding from '@/screens/Onboarding';
+import TaskDetail from '@/screens/TaskDetail';
+import ProjectDetail from '@/screens/ProjectDetail';
+import GoalDetail from '@/screens/GoalDetail';
+import DecisionDetail from '@/screens/DecisionDetail';
+import ReflectionDetail from '@/screens/ReflectionDetail';
+import ImportantDateDetail from '@/screens/ImportantDateDetail';
+import WeekReview from '@/screens/WeekReview';
+import DayReview from '@/screens/DayReview';
+import Reorganize from '@/screens/Reorganize';
+import SessionDetail from '@/screens/SessionDetail';
+import TrainingReport from '@/screens/TrainingReport';
 
 function Loading() {
   return <div className="p-8" aria-busy="true" />;

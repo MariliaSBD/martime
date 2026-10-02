@@ -16,3 +16,4 @@ supabase/.branches
 dist-e2e
 .secrets-*
 tests/e2e/zz-*
+dist-int

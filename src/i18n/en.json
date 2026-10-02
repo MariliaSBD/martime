@@ -472,7 +472,9 @@
     "morning": "Morning",
     "afternoon": "Afternoon",
     "evening": "Evening",
-    "noTime": "No time"
+    "noTime": "No time",
+    "rested": "While you rested",
+    "seen": "Seen"
   },
   "cal": {
     "next": "Next",
@@ -878,7 +880,7 @@
     "hardTasks": "Tasks hard to classify",
     "justification": "My justification",
     "kind": "Type",
-    "noSource": "Choose the data source.",
+    "noSource": "No data source.",
     "order": "Order",
     "period": "Period",
     "planVsReal": "Plan and actual",
@@ -911,5 +913,30 @@
     "summary": "Summary",
     "title": "Week of {{from}} to {{to}}",
     "topAreas": "Areas with most time"
+  },
+  "notifText": {
+    "start": "{{task}} starts now.",
+    "overtime": "The planned time for {{task}} is up. Keep going, or pause to decide?",
+    "leave": "To arrive on time for {{item}}, it's time to leave.",
+    "deadlineEve": "{{task}} is due tomorrow.",
+    "deadlineDay": "{{task}} is due today.",
+    "dateIn": "{{date}} is in {{n}} days.",
+    "dateTomorrow": "{{date}} is tomorrow.",
+    "dateToday": "{{date}} is today.",
+    "planTomorrow": "Before you end the day: what really has to happen tomorrow?",
+    "weeklyReview": "The week is done. Ten minutes to see what it taught you?",
+    "decisionReview": "{{n}} days ago you decided: {{decision}}. How did it go?",
+    "eventOutcome": "How did {{event}} go?",
+    "sessionStill": "Still on {{activity}}?",
+    "sessionWhat": "What are you doing now?",
+    "goodMorning": "Good morning. Today you have {{n}} tasks and {{m}} events.",
+    "rested": "While you rested: {{n}} reminders waiting.",
+    "test": "MarTime notifications are working.",
+    "goalReview": "Time to review {{goal}}."
+  },
+  "suggest": {
+    "energy": "Over the last two weeks you had more energy between {{start}} and {{end}}. Create this block?",
+    "energyName": "High energy",
+    "routine": "You do {{name}} several times a week. Create a routine?"
   }
 }

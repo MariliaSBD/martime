@@ -101,7 +101,7 @@ test('T7 places: travel is pre-filled, creates the travel block and counts apart
   await expect(page.getByText('Deslocação · 20 min · sair às 09:40')).toBeVisible();
   await page.clock.setFixedTime(lisbon('2026-10-02T10:00'));
   await card(page, 'Treino').getByRole('button', { name: 'Iniciar' }).click();
-  await page.goto('./#/hoje');
+  await expect(page.getByTestId('now-card')).toContainText('Treino');
   // the travel entry exists with its own classification
   const travel = await page.evaluate(async () => {
     const req = indexedDB.open('martime');

@@ -10,6 +10,7 @@ import { defaultSettings, ensureSettings } from './settings';
 import type { Settings } from '@/db/types';
 import i18n, { rememberLang } from '@/i18n';
 import { applyPalette } from '@/lib/colors';
+import { startScheduler } from './actions/notifications';
 
 interface AppState {
   auth: AuthBackend;
@@ -112,12 +113,18 @@ export function AppProvider({ children }: { children: ReactNode }) {
     applyPalette(settings.palette);
   }, [settings.palette]);
 
+  useEffect(() => {
+    if (!session) return;
+    return startScheduler();
+  }, [session?.userId]); // eslint-disable-line react-hooks/exhaustive-deps
+
   const syncNow = useCallback(() => void engine?.now(), [engine]);
 
   const signOut = useCallback(async () => {
     await engine?.now().catch(() => undefined);
     await authBackend.signOut();
-    await resetDb();
+    // with a server the data come back on the next sign-in; without one they must stay on the device
+    if (supabase) await resetDb();
     currentUser.current = null;
     setSession(null);
     setRepoUser(null);

@@ -1,5 +1,6 @@
 import { db } from '@/db/db';
-import { create, remove, update } from '@/db/repo';
+import { create, getRepoUser, remove, update } from '@/db/repo';
+import { keyToUuid } from '@/lib/domain/notifications';
 import { areaColorIndex } from '@/lib/colors';
 import type { Area } from '@/db/types';
 
@@ -12,9 +13,15 @@ export async function createArea(name: string): Promise<Area> {
   return create('areas', { name: name.trim(), color: areaColorIndex(list.length), order: (list[list.length - 1]?.order ?? -1) + 1 });
 }
 
+/** The 7 initial areas get ids derived from the account, so creating them twice (two devices) never duplicates them. */
 export async function createDefaultAreas(names: string[]): Promise<void> {
   if ((await liveAreas()).length) return;
-  for (const n of names) await createArea(n);
+  const user = getRepoUser() ?? 'local';
+  for (let i = 0; i < names.length; i++) {
+    const id = keyToUuid(`${user}|area|${i}`);
+    if (await db.areas.get(id)) continue;
+    await create('areas', { id, name: names[i], color: areaColorIndex(i), order: i });
+  }
 }
 
 /** Number of items that use the area. */

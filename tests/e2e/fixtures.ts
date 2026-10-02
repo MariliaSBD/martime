@@ -31,9 +31,16 @@ export async function signUp(page: Page, opts: { lang?: 'pt-PT' | 'en'; keepOnbo
   if (opts.keepOnboarding) return;
   await expect(page.getByRole('heading', { name: 'Áreas' })).toBeVisible();
   await expect(page.getByLabel('Nome').first()).toHaveValue('Pessoal');
-  await page.getByRole('button', { name: 'Seguinte' }).click();
-  await page.getByRole('button', { name: 'Saltar' }).click();
-  await page.getByRole('button', { name: 'Saltar' }).click();
+  // each step is confirmed before the next tap
+  const step = async (button: string, next: string) => {
+    await expect(async () => {
+      await page.getByRole('button', { name: button }).click({ timeout: 3000 });
+      await expect(page.getByText(next)).toBeVisible({ timeout: 3000 });
+    }).toPass({ timeout: 20000 });
+  };
+  await step('Seguinte', 'Passo 2 de 4');
+  await step('Saltar', 'Passo 3 de 4');
+  await step('Saltar', 'Passo 4 de 4');
   await page.getByRole('button', { name: 'Agora não' }).click();
   await expect(page).toHaveURL(/#\/hoje/);
 }
@@ -91,4 +98,35 @@ export async function startDay(page: Page) {
 
 export function card(page: Page, title: string) {
   return page.locator('main li').filter({ has: page.getByText(title, { exact: true }) }).last();
+}
+
+/** Writes records straight into the local database (to set up situations that take days to happen). */
+export async function seed(page: Page, store: string, records: Record<string, unknown>[]) {
+  await page.evaluate(
+    async ({ store, records }) => {
+      const req = indexedDB.open('martime');
+      const db: IDBDatabase = await new Promise((r) => (req.onsuccess = () => r(req.result)));
+      await new Promise<void>((res, rej) => {
+        const tx = db.transaction(store, 'readwrite');
+        for (const r of records) tx.objectStore(store).put(r);
+        tx.oncomplete = () => res();
+        tx.onerror = () => rej(tx.error);
+      });
+      db.close();
+    },
+    { store, records },
+  );
+}
+
+export async function readStore<T = Record<string, unknown>>(page: Page, store: string): Promise<T[]> {
+  return page.evaluate(async (store) => {
+    const req = indexedDB.open('martime');
+    const db: IDBDatabase = await new Promise((r) => (req.onsuccess = () => r(req.result)));
+    const out = await new Promise<unknown[]>((r) => {
+      const q = db.transaction(store).objectStore(store).getAll();
+      q.onsuccess = () => r(q.result);
+    });
+    db.close();
+    return out;
+  }, store) as Promise<T[]>;
 }

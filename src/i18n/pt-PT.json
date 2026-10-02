@@ -472,7 +472,9 @@
     "morning": "Manhã",
     "afternoon": "Tarde",
     "evening": "Noite",
-    "noTime": "Sem hora"
+    "noTime": "Sem hora",
+    "rested": "Enquanto descansavas",
+    "seen": "Visto"
   },
   "cal": {
     "next": "Seguinte",
@@ -878,7 +880,7 @@
     "hardTasks": "Tarefas difíceis de classificar",
     "justification": "A minha justificação",
     "kind": "Tipo",
-    "noSource": "Escolhe a fonte de dados.",
+    "noSource": "Sem fonte de dados.",
     "order": "Ordem",
     "period": "Período",
     "planVsReal": "Plano e real",
@@ -911,5 +913,30 @@
     "summary": "Resumo",
     "title": "Semana de {{from}} a {{to}}",
     "topAreas": "Áreas com mais tempo"
+  },
+  "notifText": {
+    "start": "{{task}} começa agora.",
+    "overtime": "O tempo previsto para {{task}} terminou. Continuas, ou paras um momento para decidir?",
+    "leave": "Para chegares a horas a {{item}}, está na hora de sair.",
+    "deadlineEve": "O prazo de {{task}} é amanhã.",
+    "deadlineDay": "O prazo de {{task}} é hoje.",
+    "dateIn": "{{date}} é daqui a {{n}} dias.",
+    "dateTomorrow": "{{date}} é amanhã.",
+    "dateToday": "{{date}} é hoje.",
+    "planTomorrow": "Antes de terminares o dia: o que é que amanhã tem mesmo de acontecer?",
+    "weeklyReview": "A semana fechou. Dez minutos para perceberes o que ela te ensinou?",
+    "decisionReview": "Há {{n}} dias decidiste: {{decision}}. Como correu?",
+    "eventOutcome": "Como correu {{event}}?",
+    "sessionStill": "Ainda estás em {{activity}}?",
+    "sessionWhat": "O que estás a fazer agora?",
+    "goodMorning": "Bom dia. Hoje tens {{n}} tarefas e {{m}} compromissos.",
+    "rested": "Enquanto descansavas: {{n}} lembretes à tua espera.",
+    "test": "As notificações da MarTime estão a funcionar.",
+    "goalReview": "Está na hora de rever {{goal}}."
+  },
+  "suggest": {
+    "energy": "Nas últimas duas semanas tiveste mais energia entre {{start}} e {{end}}. Queres criar este bloco?",
+    "energyName": "Energia alta",
+    "routine": "Fazes {{name}} várias vezes por semana. Queres criar uma rotina?"
   }
 }

@@ -5,6 +5,7 @@ import { Button, Card } from '@/components/ui';
 import { LangSwitch } from '@/components/Layout';
 import { createDefaultAreas } from '@/state/actions/areas';
 import { saveSettings } from '@/state/settings';
+import { syncNowGlobal } from '@/db/syncHandle';
 
 const STEPS = ['areas', 'blocks', 'schedule', 'notifications'] as const;
 
@@ -14,7 +15,10 @@ export default function Onboarding() {
   const [step, setStep] = useState(0);
 
   useEffect(() => {
-    void createDefaultAreas([0, 1, 2, 3, 4, 5, 6].map((i) => t(`areas.defaults.${i}`)));
+    // pull first: another device may already have the areas and the first use done
+    void syncNowGlobal()
+      .catch(() => undefined)
+      .then(() => createDefaultAreas([0, 1, 2, 3, 4, 5, 6].map((i) => t(`areas.defaults.${i}`))));
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const finish = async () => {
