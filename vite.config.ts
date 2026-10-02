@@ -37,6 +37,22 @@ export default defineConfig({
       },
     }),
   ],
+  build: {
+    chunkSizeWarningLimit: 1200,
+    rolldownOptions: {
+      output: {
+        // libraries in their own files: an app update only downloads what changed
+        advancedChunks: {
+          groups: [
+            { name: 'charts', test: /node_modules[\\/](recharts|d3-|victory|decimal\.js|eventemitter3|lodash)/ },
+            { name: 'supabase', test: /node_modules[\\/]@supabase/ },
+            { name: 'react', test: /node_modules[\\/](react|react-dom|scheduler|react-router|react-router-dom|i18next|react-i18next)[\\/]/ },
+            { name: 'vendor', test: /node_modules[\\/](dexie|dexie-react-hooks|@dnd-kit|lucide-react|date-fns)/ },
+          ],
+        },
+      },
+    },
+  },
   test: {
     globals: true,
     environment: 'jsdom',

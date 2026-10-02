@@ -219,6 +219,7 @@ export default function GoalDetail() {
         </ul>
       </Card>
 
+      {cs.length > 0 && (
       <Card className="flex flex-col gap-2">
         <h2 className="text-lg font-semibold">{t('goals.path')}</h2>
         {best && <p className="text-[15px] font-semibold" data-testid="path-summary">{t('goals.pathSummary', { p: best.pct, what: best.label, when: onWeekdays(best.weekday) })}</p>}
@@ -231,10 +232,9 @@ export default function GoalDetail() {
               </li>
             ))}
           </ol>
-        ) : (
-          <p className="text-muted">{t('common.notEnoughData')}</p>
-        )}
+        ) : null}
       </Card>
+      )}
 
       <Card className="flex flex-col gap-3">
         <h2 className="text-lg font-semibold">{t('goals.reviews')}</h2>

@@ -218,7 +218,7 @@ export function NowCard({ data, dayTasks, now }: { data: DayData; dayTasks: Task
               {fmtClock(real)}
             </p>
             {planned !== null && (
-              <p className={cx('text-[13px] font-semibold', over ? 'text-warning-dark' : 'text-muted')}>
+              <p className={cx('text-[13px] font-semibold', over ? 'text-warning-dark' : 'text-ink')}>
                 {over ? `+${Math.floor(real - planned)} min` : t('today.plannedShort', { t: fmtMinutes(planned) })}
               </p>
             )}
