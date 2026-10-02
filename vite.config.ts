@@ -18,7 +18,7 @@ export default defineConfig({
       registerType: 'autoUpdate',
       injectRegister: false,
       devOptions: { enabled: false, type: 'module' },
-      injectManifest: { globPatterns: ['**/*.{js,css,html,svg,png,woff2}'], maximumFileSizeToCacheInBytes: 8 * 1024 * 1024 },
+      injectManifest: { globPatterns: ['**/*.{js,css,html,svg,png,woff2,woff}'], maximumFileSizeToCacheInBytes: 8 * 1024 * 1024 },
       manifest: {
         name: 'MarTime',
         short_name: 'MarTime',
