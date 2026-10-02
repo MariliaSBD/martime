@@ -66,3 +66,11 @@ export function fmtNumber(n: number, digits = 1): string {
 export function fmtHours(min: number): string {
   return `${fmtNumber(min / 60)} h`;
 }
+
+/** "às sextas-feiras" / "aos sábados" / "on Saturdays" */
+export function onWeekdays(iso: number): string {
+  const long = weekdayName(iso).toLowerCase();
+  if (i18n.language === 'en') return `on ${weekdayName(iso)}s`;
+  if (long.includes('-feira')) return `às ${long.replace('-feira', 's-feiras')}`;
+  return `aos ${long}s`;
+}
