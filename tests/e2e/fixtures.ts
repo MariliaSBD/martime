@@ -48,3 +48,47 @@ export async function axe(page: Page) {
   const bad = r.violations.filter((v) => v.impact === 'serious' || v.impact === 'critical');
   expect(bad.map((v) => `${v.id}: ${v.nodes.map((n) => n.target.join(' ')).join(', ')}`)).toEqual([]);
 }
+
+/** Lisbon wall-clock time → Date (summer time in October 2026 is UTC+1, from 25 October UTC+0). */
+export function lisbon(iso: string): Date {
+  const d = new Date(`${iso}:00Z`);
+  const summer = d < new Date('2026-10-25T01:00:00Z') && d > new Date('2026-03-29T01:00:00Z');
+  return new Date(d.getTime() - (summer ? 3600000 : 0));
+}
+
+export async function openCreate(page: Page, kind: string) {
+  await page.getByRole('button', { name: /^(Criar|Create)$/ }).last().click();
+  await page.getByRole('dialog').getByRole('button', { name: kind, exact: true }).click();
+}
+
+export async function createTask(page: Page, o: { title: string; date?: string; start?: string; end?: string; duration?: number }) {
+  await openCreate(page, 'Tarefa');
+  const d = page.getByRole('dialog');
+  await d.getByLabel('Título').fill(o.title);
+  if (o.date !== undefined) await d.getByLabel('Data', { exact: true }).fill(o.date);
+  if (o.start) await d.getByLabel('Início previsto').fill(o.start);
+  if (o.end) await d.getByLabel('Fim previsto').fill(o.end);
+  if (o.duration) await d.getByRole('radio', { name: String(o.duration), exact: true }).click();
+  await d.getByRole('button', { name: 'Criar', exact: true }).click();
+  await expect(page.getByRole('dialog')).toHaveCount(0);
+}
+
+export async function createEvent(page: Page, o: { title: string; date: string; start: string; end: string }) {
+  await openCreate(page, 'Compromisso');
+  const d = page.getByRole('dialog');
+  await d.getByLabel('Título').fill(o.title);
+  await d.getByLabel('Data', { exact: true }).fill(o.date);
+  await d.getByLabel('Início', { exact: true }).fill(o.start);
+  await d.getByLabel('Fim', { exact: true }).fill(o.end);
+  await d.getByRole('button', { name: 'Criar', exact: true }).click();
+  await expect(page.getByRole('dialog')).toHaveCount(0);
+}
+
+export async function startDay(page: Page) {
+  await page.getByRole('button', { name: 'Começar o dia' }).first().click();
+  await expect(page.getByRole('button', { name: 'Terminar o dia' })).toBeVisible();
+}
+
+export function card(page: Page, title: string) {
+  return page.locator('main li').filter({ hasText: title }).first();
+}

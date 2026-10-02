@@ -32,6 +32,41 @@ export function stamp(): string {
   return new Date(t).toISOString();
 }
 
+// ---- undo recorder: remembers the previous version of every record written during an action ----
+type Recorded = { name: TableName; id: string; prev: unknown | null };
+let recorder: Recorded[] | null = null;
+
+async function record(name: TableName, id: string): Promise<void> {
+  if (!recorder || recorder.some((r) => r.name === name && r.id === id)) return;
+  const prev = await table(name).get(id);
+  recorder.push({ name, id, prev: prev ?? null });
+}
+
+/** Runs an action and returns a function that undoes every change it made. */
+export async function undoable<T>(fn: () => Promise<T>): Promise<{ result: T; undo: () => Promise<void> }> {
+  const outer = recorder;
+  const mine: Recorded[] = [];
+  recorder = mine;
+  try {
+    const result = await fn();
+    return {
+      result,
+      undo: async () => {
+        for (const r of [...mine].reverse()) {
+          if (r.prev) await put(r.name, r.prev as TableMap[typeof r.name]);
+          else {
+            const cur = await table(r.name).get(r.id);
+            if (cur) await put(r.name, { ...cur, deleted_at: stamp() } as TableMap[typeof r.name]);
+          }
+        }
+      },
+    };
+  } finally {
+    if (outer) outer.push(...mine);
+    recorder = outer;
+  }
+}
+
 async function markDirty(name: TableName, id: string): Promise<void> {
   await db.outbox.put({ key: `${name}:${id}`, table: name, id, at: Date.now() });
 }
@@ -50,6 +85,7 @@ export async function create<K extends TableName>(name: K, data: Data<K>): Promi
     updated_at: now,
     deleted_at: null,
   } as unknown as TableMap[K];
+  await record(name, rec.id);
   await db.transaction('rw', table(name), db.outbox, async () => {
     await table(name).put(rec);
     await markDirty(name, rec.id);
@@ -60,6 +96,7 @@ export async function create<K extends TableName>(name: K, data: Data<K>): Promi
 
 export async function update<K extends TableName>(name: K, id: string, patch: Partial<TableMap[K]>): Promise<TableMap[K] | undefined> {
   let out: TableMap[K] | undefined;
+  await record(name, id);
   await db.transaction('rw', table(name), db.outbox, async () => {
     const cur = await table(name).get(id);
     if (!cur) return;

@@ -3,6 +3,7 @@ import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { useApp } from '@/state/app';
 import { Layout } from '@/components/Layout';
 import { CreateProvider } from '@/components/CreateMenu';
+import { FlowsProvider } from '@/components/flows';
 import { AuthScreen } from '@/screens/AuthScreen';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { registerAllForms } from '@/forms';
@@ -40,6 +41,7 @@ export default function App() {
   return (
     <HashRouter>
       <ErrorBoundary>
+        <FlowsProvider>
         <CreateProvider>
           <Suspense fallback={<Loading />}>
             {needsOnboarding ? (
@@ -70,6 +72,7 @@ export default function App() {
             )}
           </Suspense>
         </CreateProvider>
+        </FlowsProvider>
       </ErrorBoundary>
     </HashRouter>
   );
